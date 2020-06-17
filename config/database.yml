@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: grape-active-dev
+
+test:
+  <<: *default
+  database: grape-active-test
+
+production:
+  <<: *default
+  database: <%= ENV["DB_NAME"]%>
+  host:     <%= ENV['DB_HOST'] %>
+  username: <%= ENV["DB_USERNAME"]%>
+  password: <%= ENV['DB_PASSWORD'] %>
